@@ -1,0 +1,9 @@
+[submodule "plugins/zaw"]
+	path = plugins/zaw
+	url = git://github.com/zsh-users/zaw.git
+[submodule "plugins/auto-fu.zsh"]
+	path = plugins/auto-fu.zsh
+	url = git://github.com/hchbaw/auto-fu.zsh.git
+[submodule "plugins/zsh-completions"]
+	path = plugins/zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
