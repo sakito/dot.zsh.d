@@ -11,9 +11,10 @@ dotfiles:
 	[ -d ${HOME}/.config/git ] || mkdir -p ${HOME}/.config/git
 	ln -sf ${CWD}/dotfiles/gitignore ${HOME}/.config/git/ignore
 	ln -sf ${CWD}/dotfiles/pip ${HOME}/.pip
-	ln -sf ${CWD}/dotfiles/zlogin ${HOME}/.zlogin
 	ln -sf ${CWD}/dotfiles/pythonrc.py ${HOME}/.pythonrc.py
 	ln -sf ${CWD}/dotfiles/tmux.conf ${HOME}/.tmux.conf
+	ln -sf ${CWD}/zsh.d ${HOME}/.zsh.d
+	ln -sf ${CWD}/zlogin ${HOME}/.zlogin
 	ln -sf ${CWD}/zshrc ${HOME}/.zshrc
 
 brewinstall:

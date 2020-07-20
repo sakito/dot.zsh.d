@@ -425,8 +425,8 @@ zstyle ':completion:*' recent-dirs-insert both
 #unsetopt auto_remove_slash
 unsetopt sh_word_split
 # zaw
-#source ${HOME}/.emacs.d/rc.d/zsh.d/plugins/zaw/zaw.zsh
-#source ${HOME}/.emacs.d/rc.d/zsh.d/plugins/cdd/cdd.zsh
+#source ${HOME}/.zsh.d/plugins/zaw/zaw.zsh
+#source ${HOME}/.zsh.d/plugins/cdd/cdd.zsh
 #function chpwd() {_reg_pwd_screennum;}
 #(( $+functions[cdd] )) || return
 #
@@ -456,7 +456,7 @@ unsetopt sh_word_split
 #zaw-register-src -n dirstack zaw-src-dirstack
 
 # auto-fu
-#source ${HOME}/.emacs.d/rc.d/zsh.d/plugins/auto-fu.zsh/auto-fu.zsh
+#source ${HOME}/.zsh.d/plugins/auto-fu.zsh/auto-fu.zsh
 #function zle-line-init() {auto-fu-init;}; zle -N zle-line-init
 # -azfu- の非表示
 #zstyle ':auto-fu:var' postdisplay $''
