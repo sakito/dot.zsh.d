@@ -15,17 +15,22 @@ umask 022
 # 設定ファイル分割関連
 ZSHD="${HOME}/.zsh.d"
 
+# zinit
+source "${ZSHD}/plugins/zinit/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
 #-----------------------------------------------------------------
 # 判定用関数
 #-----------------------------------------------------------------
 # Mac OS X特有の設定を切り分るための関数
-isdarwin(){
+isdarwin() {
     [[ $OSTYPE == darwin* ]] && return 0
     return 1
 }
 
 # Emacs の term で動作させた場合
-isemacs(){
+isemacs() {
     [[ "$EMACS" != "" ]] && return 0
     return 1
 }
@@ -53,10 +58,6 @@ export TMP="${HOME}/tmp"
 
 # EDITOR
 export EDITOR="/usr/local/bin/emacsclient"
-
-# CVS
-export CVSROOT=${HOME}/var/cvs
-export CVS_RSH="ssh"
 
 # パスとコマンド固有の設定
 # Mac OS X の初期パスは /usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:
@@ -145,14 +146,11 @@ export MANWIDTH=80
 # for Mercurial
 export HGENCODING=utf-8
 
-# 64bit
-#export ARCHFLAGS='-Os -arch x86_64 -fno-common'
-
 # 最優先パス
 export PATH=${HOME}/.emacs.d/bin:${PATH}
 export PATH=${HOME}/bin:${PATH}
 export PATH=${HOME}/opt/py36/bin:${PATH}
-export PATH=${HOME}/opt/py27/bin:$PATH
+export PATH=${HOME}/opt/py27/bin:${PATH}
 
 #-----------------------------------------------------------------
 # 非端末プロセスなら終了
@@ -421,110 +419,8 @@ zstyle ':completion:*' recent-dirs-insert both
 #-----------------------------------------------------------------
 # plugin
 #-----------------------------------------------------------------
-source "${ZSHD}/plugins/zinit/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-#unsetopt auto_remove_slash
-unsetopt sh_word_split
-# zaw
-#source ${HOME}/.zsh.d/plugins/zaw/zaw.zsh
-#source ${HOME}/.zsh.d/plugins/cdd/cdd.zsh
-#function chpwd() {_reg_pwd_screennum;}
-#(( $+functions[cdd] )) || return
-#
-#function zaw-src-cdd () {
-#    if [ -r "$CDD_PWD_FILE" ]; then
-#        for window in `cat $CDD_PWD_FILE | sed '/^$/d'`; do
-#            candidates+=("${window}")
-#        done
-#        actions=(zaw-src-cdd-cd)
-#        act_descriptions=("cdd for zaw")
-#    fi
-#}
-
-#function zaw-src-cdd-cd () {
-#    BUFFER="cd `echo $1 | cut -d ':' -f 2`"
-#    zle accept-line
-#}
-#zaw-register-src -n cdd zaw-src-cdd
-
-#zmodload zsh/parameter
-
-#function zaw-src-dirstack() {
-#    : ${(A)candidates::=$dirstack}
-#    actions=("zaw-callback-execute" "zaw-callback-replace-buffer" "zaw-callback-append-to-buffer")
-#    act_descriptions=("execute" "replace edit buffer" "append to edit buffer")
-#}
-#zaw-register-src -n dirstack zaw-src-dirstack
-
-# auto-fu
-#source ${HOME}/.zsh.d/plugins/auto-fu.zsh/auto-fu.zsh
-#function zle-line-init() {auto-fu-init;}; zle -N zle-line-init
-# -azfu- の非表示
-#zstyle ':auto-fu:var' postdisplay $''
-
-# afu+cancel
-#function afu+cancel () {
-#    afu-clearing-maybe
-#    ((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur"; }
-#}
-#zle -N afu+cancel
-#function bindkey-advice-before () {
-#    local key="$1"
-#    local advice="$2"
-#    local widget="$3"
-#    [[ -z "$widget" ]] && {
-#        local -a bind
-#        bind=(`bindkey -M main "$key"`)
-#        widget=$bind[2]
-#    }
-#    local fun="$advice"
-#    if [[ "$widget" != "undefined-key" ]]; then
-#        local code=${"$(<=(cat <<"EOT"
-#            function $advice-$widget () {
-#                zle $advice
-#                zle $widget
-#            }
-#            fun="$advice-$widget"
-#EOT
-#        ))"}
-#        eval "${${${code//\$widget/$widget}//\$key/$key}//\$advice/$advice}"
-#    fi
-#    zle -N "$fun"
-#    bindkey -M afu "$key" "$fun"
-#}
-#bindkey-advice-before "^G" afu+cancel
-
-# delete unambiguous prefix when accepting line
-#function afu+delete-unambiguous-prefix () {
-#    afu-clearing-maybe
-#    local buf; buf="$BUFFER"
-#    local bufc; bufc="$buffer_cur"
-#    [[ -z "$cursor_new" ]] && cursor_new=-1
-#    [[ "$buf[$cursor_new]" == ' ' ]] && return
-#    [[ "$buf[$cursor_new]" == '/' ]] && return
-#    ((afu_in_p == 1)) && [[ "$buf" != "$bufc" ]] && {
-#        # there are more than one completion candidates
-#        zle afu+complete-word
-#        [[ "$buf" == "$BUFFER" ]] && {
-#            # the completion suffix was an unambiguous prefix
-#            afu_in_p=0; buf="$bufc"
-#        }
-#        BUFFER="$buf"
-#        buffer_cur="$bufc"
-#    }
-#}
-#zle -N afu+delete-unambiguous-prefix
-#function afu-ad-delete-unambiguous-prefix () {
-#    local afufun="$1"
-#    local code; code=$functions[$afufun]
-#    eval "function $afufun () { zle afu+delete-unambiguous-prefix; $code }"
-#}
-#afu-ad-delete-unambiguous-prefix afu+accept-line
-#afu-ad-delete-unambiguous-prefix afu+accept-line-and-down-history
-#afu-ad-delete-unambiguous-prefix afu+accept-and-hold
-
+# zinit snippet "${ZSHD}/zaw.zsh"
+# zinit snippet "${ZSHD}/auto-fu.zsh"
 
 #-----------------------------------------------------------------
 # 関数定義
@@ -540,7 +436,6 @@ function ex () {
         case $1 in
             *.tar.bz2) tar xvfj $1 ;;
             *.tar.gz) tar xvfz $1 ;;
-            
             *.tar.xz) tar xvfJ $1 ;;
             *.bz2) bunzip2 $1 ;;
             *.rar) unrar x $1 ;;
@@ -560,34 +455,8 @@ function ex () {
     fi
 }
 
-# Common Lisp 用
-
-# ccl
-function ccl() {
-    BREAK_CHARS="(){}[],^%$#@\"\";''|\\"
-    ccl="rlwrap -pgreen -r -m --history-filename=${HOME}/.ccl/ccl_history --histsize=1000000 -c -b ${BREAK_CHARS} -f ${HOME}/.ccl/ccl_completions ccl64 -K utf-8"
-    if [ "$1" = "--script" ]; then
-        $ccl --load "$2" --eval '(ccl:quit)'
-    else
-        $ccl $@
-    fi
-}
-
-# sbcl
-function sbcl() {
-    BREAK_CHARS="(){}[],^%$#@\"\";''|\\"
-    RLWRAP=""
-    if [ $TERM = "dumb" ]; then  # slime
-        RLWRAP=""
-    else
-        RLWRAP="rlwrap -pgreen -r -m --history-filename=${HOME}/.sbcl/sbcl_history --histsize=1000000 -c -b ${BREAK_CHARS} -f ${HOME}/.sbcl/sbcl_completions"
-    fi
-    if [ $# -eq 0 ]; then
-        $RLWRAP sbcl
-    else # permits #!/usr/bin/env sbcl , but breaks sbcl --help, etc.
-        sbcl --script $*
-    fi
-}
+# Common Lisp
+zinit snippet "${ZSHD}/cl.zsh"
 
 # Emacs 用
 
@@ -606,66 +475,6 @@ function cde () {
 
     echo "chdir to $EMACS_CWD"
     cd "$EMACS_CWD"
-}
-
-# hg flow 用(暫定)
-# TODO 実質決め打ちでエラー処理等はしてない。また使い易いかも現在は考慮してない
-function hgflow() {
-    local MSG= FLAG_S= FLAG_B= ARGS=
-    while getopts :m:sfnrh opt
-    do
-        case ${opt} in
-        m) MSG=${OPTARG};;
-        s) FLAG_S="start";;
-        f) FLAG_S="finish";;
-        n) FLAG_B="feature";;
-        r) FLAG_B="release";;
-        h) FLAG_B="hotfix";;
-        \?) echo "$0 不正なオプション -$OPTARG" >&2;;
-        esac
-    done
-    if [ -z "${MSG}" ] || [ -z "${FLAG_S}" ]  || [ -z "${FLAG_B}" ]; then
-        echo "usage: $0 [-m msg] [-sf] [-nrh]"
-        # hgflow -s -n -m"test" t3
-    else
-        shift $((OPTIND -1))
-        ARGS=${*}
-        echo "「hg flow ${FLAG_B} ${FLAG_S} ${ARGS} -m \"${MSG}\"」yes or no? "
-        read yes_no
-        if [ ${yes_no} = "yes" ]; then
-            command hg flow ${FLAG_B} ${FLAG_S} ${ARGS} -m "${MSG}"
-        else
-            echo "cancel"
-        fi
-    fi
-}
-
-function hgfopen() {
-    # hgfopen 3
-    hgflow -s -n -m "refs #$*" t${*}
-}
-
-function hgfclose() {
-    # hgfclose 3
-    hgflow -f -n -m "close #$*" t${*}
-}
-
-function hgfrelease() {
-    # hgfrelease 3
-    hgflow -s -r -m "release $*" "$*"
-    hgflow -f -r -m "release $*" "$*"
-    command hg flow develop
-}
-
-function hgfreo() {
-    # hgfreo v1.0
-    hgflow -s -r -m "release $*" "$*"
-}
-
-function hgfrec() {
-    # hgfrec v1.0
-    hgflow -f -r -m "release $*" "$*"
-    command hg flow develop
 }
 
 # python
@@ -693,40 +502,7 @@ function ercrun {
 }
 
 # peco
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null;
-    then
-        tac="tac"
-    elif which gtac > /dev/null;
-    then
-        tac="gtac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        awk '!a[$0]++' | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-if which peco > /dev/null;
-then
-    zle -N peco-select-history
-    bindkey '^r' peco-select-history
-else
-    bindkey '^r' zaw-history
-fi
-
-function peco-select-port-upgrade() {
-    sudo port upgrade $(port outdated | \
-    pbcopy; pbpaste | \
-    peco | \
-    cut -f1 -d' ')
-}
-
-
+zinit snippet "${ZSHD}/peco.zsh"
 
 #-----------------------------------------------------------------
 # エイリアス設定
@@ -750,32 +526,16 @@ bindkey '^p' history-search-backward
 #bindkey '^r' copy-prev-word
 bindkey ' '  magic-space
 
-#bindkey '^@' zaw-cdr
-#bindkey '^u' zaw-cdd
-
-#-----------------------------------------------------------------
-# システム別設定
-#-----------------------------------------------------------------
-#if [ ! -S ${SSH_AUTH_SOCK} ]; then
-#    eval `ssh-agent -a ${SSH_AUTH_SOCK}`
-#    echo ${SSH_AGENT_PID} > /tmp/ssh_agent_pid
-#    ssh-add
-#else
-#    export SSH_AGENT_PID=`cat /tmp/ssh_agent_pid`
-#fi
-
 #-----------------------------------------------------------------
 # ローカル設定の読み込み
 #-----------------------------------------------------------------
-# [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ${ZSHD}/zshrc.local ] && source ${ZSHD}/zshrc.local
 
-if (which zprof > /dev/null 2>&1) ;then
-  zprof
-fi
+#if (which zprof > /dev/null 2>&1) ;then
+#  zprof
+#fi
 
 echo Now zsh version $ZSH_VERSION start!
 
-# 端末をクリアして終了
-# builtin cls
 # end of ~/.zshrc
 #=================================================================
