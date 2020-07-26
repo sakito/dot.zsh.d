@@ -21,16 +21,8 @@ dotfiles:
 
 .PHONY: brewinstall
 brewinstall:
-	brew install autoconf automake
-	brew install coreutils findutils
-	brew install texinfo
-	brew install readline ncurses
-	brew install gawk gnu-sed gauche go
-	brew install zsh zsh-completions
-	brew install git cmake
-	brew install tmux reattach-to-user-namespace
-	brew install hdf5 icu4c xz
-	brew install wget ffmpeg imagemagick peco
+	brew bundle
+	# brew bundle dump
 
 .PHONY: pipinstall
 pipinstall:
