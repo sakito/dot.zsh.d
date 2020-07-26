@@ -283,9 +283,8 @@ fi
 # 7:white
 # それ以外：black
 # %f:reset_color
-autoload -Uz colors; colors
+#autoload -Uz colors; colors
 # 左プロンプト
-#PROMPT="%{$fg[green]%}%n@%m%{$fg[magenta]%}${WINDOW:+[$WINDOW]}%{$fg[white]%}%#%f "
 PROMPT="%F{green}%n@%m%F{magenta}${WINDOW:+[$WINDOW]}%F{white}%#%f "
 
 # 右プロンプト
@@ -315,9 +314,9 @@ fi
 function precmd() {
     local color
     if [[ ${PWD}/ == /Volumes/* ]]; then
-        color=${fg[yellow]}${bg[red]}
+        color=%F{yellow}%f
     else
-        color=${fg[white]}
+        color=%F{white}%f
     fi
 
     psvar=()
@@ -393,10 +392,10 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} r:|[-_.]=**' '+m:{A-Z}={a-
 # ファイルリスト補完でも coreutils ls と同様に色をつける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # 補完メッセージの色
-zstyle ':completion:*:messages' format "%{$fg[yellow]%}'%d'%f"
-zstyle ':completion:*:warnings' format "%{$fg[red]%}'No matches for:'%{$fg[yellow]%}' %d'%f"
-zstyle ':completion:*:descriptions' format "%{$fg[yellow]%}'completing %B%d%b'%f"
-zstyle ':completion:*:corrections' format "%{$fg[yellow]%}'%B%d '%{$fg[red]%}'(errors: %e)%b'%f"
+zstyle ':completion:*:messages' format "%F{yellow}%'%d'%f"
+zstyle ':completion:*:warnings' format "%F{red}'No matches for:%f'%F{yellow}' %d'%f"
+zstyle ':completion:*:descriptions' format "%F{yellow}'completing %B%d%b'%f"
+zstyle ':completion:*:corrections' format "%F{yellow}'%B%d '%f%F{red}'(errors: %e)%b'%f"
 
 # 補完説明を表示する
 zstyle ':completion:*:options' description true
