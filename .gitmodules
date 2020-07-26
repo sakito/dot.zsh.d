@@ -7,3 +7,6 @@
 [submodule "plugins/zsh-completions"]
 	path = zsh.d/plugins/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
+[submodule "zsh.d/plugins/zinit"]
+	path = zsh.d/plugins/zinit
+	url = git://github.com/zdharma/zinit.git

@@ -12,6 +12,9 @@ HISTFILE=${HOME}/var/zsh/zsh_history
 SAVEHIST=4096
 umask 022
 
+# 設定ファイル分割関連
+ZSHD="${HOME}/.zsh.d"
+
 #-----------------------------------------------------------------
 # 判定用関数
 #-----------------------------------------------------------------
@@ -60,9 +63,6 @@ export CVS_RSH="ssh"
 
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
-
-# MacPorts
-isdarwin && export PATH=/opt/local/bin:${PATH}
 
 # Python
 #export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}
@@ -366,7 +366,7 @@ fpath=(${HOME}/.emacs.d/rc.d/zsh.d/completions/src $fpath)
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/etc/bash_completion.d $fpath)
 # 補完の利用設定
-autoload -Uz compinit; compinit
+#autoload -Uz compinit; compinit
 
 ## キャッシュの設定
 # 補完をキャッシュ
@@ -422,6 +422,10 @@ zstyle ':completion:*' recent-dirs-insert both
 #-----------------------------------------------------------------
 # plugin
 #-----------------------------------------------------------------
+source "${ZSHD}/.zsh.d/plugins/zinit/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
 #unsetopt auto_remove_slash
 unsetopt sh_word_split
 # zaw
@@ -537,6 +541,7 @@ function ex () {
         case $1 in
             *.tar.bz2) tar xvfj $1 ;;
             *.tar.gz) tar xvfz $1 ;;
+            
             *.tar.xz) tar xvfJ $1 ;;
             *.bz2) bunzip2 $1 ;;
             *.rar) unrar x $1 ;;
@@ -755,8 +760,8 @@ alias brewout="brew update; brew outdated"
 alias brewin="brew upgrade"
 
 # http://d.hatena.ne.jp/mollifier/20101227/p1
-autoload -Uz zmv
-alias zmv='noglob zmv -W'
+#autoload -Uz zmv
+#alias zmv='noglob zmv -W'
 
 # グローバルエイリアス
 alias -g V="| /usr/share/vim/vim74/macros/less.sh"
@@ -799,6 +804,10 @@ bindkey ' '  magic-space
 # ローカル設定の読み込み
 #-----------------------------------------------------------------
 # [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi
 
 echo Now zsh version $ZSH_VERSION start!
 
