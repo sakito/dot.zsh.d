@@ -3,6 +3,8 @@
     email = sakito@sakito.com
 [color]
     ui = true
+[core]
+    quotepath = false
 [difftool "sourcetree"]
     cmd = /usr/local/bin/meld $LOCAL $REMOTE
     path = 
@@ -20,3 +22,4 @@
     b = branch --no-merged
 
 # global な gitignore は $HOME/.config/git/ignore に配置
+

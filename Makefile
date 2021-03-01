@@ -29,6 +29,6 @@ pipinstall:
 	curl -O https://raw.github.com/pypa/virtualenv/develop/virtualenv.py
 	python virtualenv.py --distribute -p /usr/local/bin/python ${HOME}/local
 	source ${HOME}/local/bin/activate
-	pip -r requirements.txt
+	pip -r ${CWD}/dotfiles/requirements.txt
 
 # end
