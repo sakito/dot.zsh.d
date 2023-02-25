@@ -15,6 +15,9 @@ alias x=start
 alias j=jobs
 alias reload="source ~/.zshrc"
 
+#alias zzz='pmset sleepnow'
+alias zzz='osascript -e "tell application \"Finder\" to sleep"'
+
 # git
 alias g='git'
 

@@ -62,27 +62,28 @@ export EDITOR="/usr/local/bin/emacsclient"
 # パスとコマンド固有の設定
 # Mac OS X の初期パスは /usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:
 
+
+export PATH=/opt/homebrew/bin:${PATH}
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
+
+# pyenv
+export PYENV_ROOT=${HOME}/opt/pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
 
 # Python
 #export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-source ${HOME}/opt/py36/bin/activate
+source ${HOME}/opt/py3.11/bin/activate
 #export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
-export WORKON_HOME=${HOME}/.virtualenvs
+#export WORKON_HOME=${HOME}/.virtualenvs
 #source ${HOME}/local/bin/virtualenvwrapper.sh
 export PIP_RESPECT_VIRTUALENV=true
 if [ -d ${HOME}/python/OpenCV-2.4.2/build/lib ];then
     export PYTHONPATH=$PYTHONPATH:${HOME}/local/OpenCV-2.4.2/lib
 fi
-
-# pyenv
-export PYENV_ROOT=/opt/pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-
 
 # mysql
 export PATH=/usr/local/mysql/bin:${PATH}
@@ -99,7 +100,7 @@ export PATH=${PATH}:${HOME}/.cabal/bin
 export PATH=${PATH}:${HOME}/local/node/bin
 
 # Homebrew
-export HOMEBREW_GITHUB_API_TOKEN=$(security find-generic-password -a homebrew-github-api-token -s homebrew-github-api-token -w)
+#export HOMEBREW_GITHUB_API_TOKEN=$(security find-generic-password -a homebrew-github-api-token -s homebrew-github-api-token -w)
 export PATH=/usr/local/opt/libxml2/bin:${PATH}
 export PATH=/usr/local/opt/texinfo/bin:${PATH}
 export PATH=/usr/local/opt/openssl/bin:${PATH}
@@ -456,7 +457,7 @@ function ex () {
 }
 
 # Common Lisp
-zinit snippet "${ZSHD}/cl.zsh"
+#zinit snippet "${ZSHD}/cl.zsh"
 
 # Emacs 用
 
@@ -502,7 +503,7 @@ function ercrun {
 }
 
 # peco
-zinit snippet "${ZSHD}/peco.zsh"
+#zinit snippet "${ZSHD}/peco.zsh"
 
 #-----------------------------------------------------------------
 # エイリアス設定
@@ -539,3 +540,4 @@ echo Now zsh version $ZSH_VERSION start!
 
 # end of ~/.zshrc
 #=================================================================
+### End of Zinit's installer chunk
