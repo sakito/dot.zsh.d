@@ -212,7 +212,7 @@ setopt hist_reduce_blanks
 # setopt hist_verify
 # ctr-d で終了しない
 setopt ignore_eof
-# コマンド確定後すぐに履歴ファイルに保存する(設定しないと exit 時)
+# コマンド確定後すぐに履歴ファイルに保存する(設定しないと exit 時保存になる)
 setopt inc_append_history
 # 補完候補をコンパクトにする
 setopt list_packed
@@ -250,7 +250,7 @@ setopt print_eight_bit
 setopt pushd_ignore_dups
 # "rm * " を実行する前に確認しない
 # setopt rm_star_silent
-# 複数端末間で履歴ファイルを共有する
+# 複数端末間で履歴ファイルを共有する(tmuxなど利用する場合は必須)
 setopt share_history
 # 行末の "` (バッククウォート)" を無視
 setopt sun_keyboard_hack
@@ -409,44 +409,17 @@ zstyle ':completion:*:files' remote-access no
 #zstyle ':url-quote-magic:*' url-metas '?'
 #zle -N self-insert url-quote-magic
 
+
+# cdr 設定
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 5000
-zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':completion:*' recent-dirs-insert both
 
 #-----------------------------------------------------------------
 # 関数定義
 #-----------------------------------------------------------------
-
-# 汎用
-
-# @see http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
-# このGnu tar には解凍時、圧縮形式を自動判定する機能があるので、
-# この関数はほぼ不要だが、サンプルとして入れている
-function ex () {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2) tar xvfj $1 ;;
-            *.tar.gz) tar xvfz $1 ;;
-            *.tar.xz) tar xvfJ $1 ;;
-            *.bz2) bunzip2 $1 ;;
-            *.rar) unrar x $1 ;;
-            *.gz) gunzip $1 ;;
-            *.tar) tar xvf $1 ;;
-            *.tbz2) tar xvfj $1 ;;
-            *.tgz) tar xvfz $1 ;;
-            *.zip) unzip $1 ;;
-            *.Z) uncompress $1 ;;
-            *.7z) 7z x $1 ;;
-            *.lzma) lzma -dv $1 ;;
-            *.xz) xz -dv $1 ;;
-            *) echo "don't know how to extract '$1'..." ;;
-        esac
-    else
-        echo "'$1' is not a valid file!"
-    fi
-}
 
 # Emacs 用
 
@@ -490,22 +463,6 @@ function ercrun {
         erl -noshell -s $@ -s init stop
     fi
 }
-
-#-----------------------------------------------------------------
-# キーバインド設定
-#-----------------------------------------------------------------
-bindkey -e
-bindkey '^/' undo
-bindkey '^g' undo
-bindkey '^q' push-line
-bindkey '^w' kill-region
-bindkey '^i' expand-or-complete
-bindkey '^d' delete-char-or-list
-bindkey '^j' reverse-menu-complete
-bindkey '^n' history-search-forward
-bindkey '^p' history-search-backward
-#bindkey '^r' copy-prev-word
-bindkey ' '  magic-space
 
 #-----------------------------------------------------------------
 # ローカル設定の読み込み

@@ -29,6 +29,10 @@ github = "zsh-users/zsh-autosuggestions"
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
 
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+use = ["{{ name }}.zsh"]
+
 [plugins.dotfiles-sync]
 local = "~/.zsh.d/sync"
 use = ["*.zsh"]
