@@ -6,6 +6,7 @@
 # - `sheldon remove` to remove a plugin from the config file
 #
 # See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+# 更新 sheldon lock --update
 
 shell = "zsh"
 
@@ -17,11 +18,17 @@ github = "romkatv/zsh-defer"
 apply = ["source"]
 
 [templates]
-defer = ""
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
-[plugins.dotfiles-alias]
-local = "~/.zsh.d"
-use = ["alias.zsh"]
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
+
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+
+[plugins.dotfiles-sync]
+local = "~/.zsh.d/sync"
+use = ["*.zsh"]
 apply = ["source"]
 
 # end
