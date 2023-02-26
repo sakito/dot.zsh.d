@@ -358,7 +358,7 @@ fignore=(.o .dvi .aux .toc - \~)
 
 # ロード
 # rm -f ~/.zcompdump; compinit
-fpath=(${HOME}/.emacs.d/rc.d/zsh.d/completions/src $fpath)
+#fpath=(${HOME}/.emacs.d/rc.d/zsh.d/completions/src $fpath)
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/etc/bash_completion.d $fpath)
 # 補完の利用設定
@@ -416,12 +416,6 @@ zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
 #-----------------------------------------------------------------
-# plugin
-#-----------------------------------------------------------------
-# zinit snippet "${ZSHD}/zaw.zsh"
-# zinit snippet "${ZSHD}/auto-fu.zsh"
-
-#-----------------------------------------------------------------
 # 関数定義
 #-----------------------------------------------------------------
 
@@ -453,9 +447,6 @@ function ex () {
         echo "'$1' is not a valid file!"
     fi
 }
-
-# Common Lisp
-#zinit snippet "${ZSHD}/cl.zsh"
 
 # Emacs 用
 
@@ -499,15 +490,6 @@ function ercrun {
         erl -noshell -s $@ -s init stop
     fi
 }
-
-# peco
-#zinit snippet "${ZSHD}/peco.zsh"
-
-#-----------------------------------------------------------------
-# エイリアス設定
-# 変更してリロードする場合 snippet -f する
-#-----------------------------------------------------------------
-#zinit snippet "${ZSHD}/alias.zsh"
 
 #-----------------------------------------------------------------
 # キーバインド設定
