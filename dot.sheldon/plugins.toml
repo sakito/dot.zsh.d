@@ -21,14 +21,21 @@ apply = ["source"]
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
+inline = "autoload -Uz compinit && zsh-defer compinit"
 
 [plugins.zsh-autosuggestions]
-github = 'zsh-users/zsh-autosuggestions'
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
 
 [plugins.dotfiles-sync]
 local = "~/.zsh.d/sync"
 use = ["*.zsh"]
 apply = ["source"]
+
+[plugins.dotfiles-defer]
+local = "~/.zsh.d/defer"
+use = ["*.zsh"]
 
 # end
