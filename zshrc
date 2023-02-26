@@ -15,10 +15,8 @@ umask 022
 # 設定ファイル分割関連
 ZSHD="${HOME}/.zsh.d"
 
-# zinit
-source "${ZSHD}/plugins/zinit/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# sheldon
+eval "$(sheldon source)"
 
 #-----------------------------------------------------------------
 # 判定用関数
@@ -509,7 +507,7 @@ function ercrun {
 # エイリアス設定
 # 変更してリロードする場合 snippet -f する
 #-----------------------------------------------------------------
-zinit snippet "${ZSHD}/alias.zsh"
+#zinit snippet "${ZSHD}/alias.zsh"
 
 #-----------------------------------------------------------------
 # キーバインド設定
@@ -519,7 +517,7 @@ bindkey '^/' undo
 bindkey '^g' undo
 bindkey '^q' push-line
 bindkey '^w' kill-region
-bindkey '^i' expand-or-complete 
+bindkey '^i' expand-or-complete
 bindkey '^d' delete-char-or-list
 bindkey '^j' reverse-menu-complete
 bindkey '^n' history-search-forward
@@ -540,4 +538,3 @@ echo Now zsh version $ZSH_VERSION start!
 
 # end of ~/.zshrc
 #=================================================================
-### End of Zinit's installer chunk
