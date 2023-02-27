@@ -1,7 +1,8 @@
 # -*- mode:sh -*-
 # ~/.zshrc
 # 作成開始: [2002/10/01]
-# 大規模改訂: [2011/07/17]
+# 改訂: [2011/07/17]
+# 改訂: [2023/02/27]
 #
 #-----------------------------------------------------------------
 # 基本設定
@@ -58,30 +59,9 @@ export TMP="${HOME}/tmp"
 export EDITOR="/usr/local/bin/emacsclient"
 
 # パスとコマンド固有の設定
-# Mac OS X の初期パスは /usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:
-
-
 export PATH=/opt/homebrew/bin:${PATH}
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
-
-# pyenv
-export PYENV_ROOT=${HOME}/opt/pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-
-# Python
-#export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}
-export PYTHONSTARTUP="${HOME}/.pythonrc.py"
-export VIRTUAL_ENV_DISABLE_PROMPT=true
-source ${HOME}/opt/py3.11/bin/activate
-#export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
-#export WORKON_HOME=${HOME}/.virtualenvs
-#source ${HOME}/local/bin/virtualenvwrapper.sh
-export PIP_RESPECT_VIRTUALENV=true
-if [ -d ${HOME}/python/OpenCV-2.4.2/build/lib ];then
-    export PYTHONPATH=$PYTHONPATH:${HOME}/local/OpenCV-2.4.2/lib
-fi
 
 # mysql
 export PATH=/usr/local/mysql/bin:${PATH}
@@ -148,194 +128,9 @@ export HGENCODING=utf-8
 # 最優先パス
 export PATH=${HOME}/.emacs.d/bin:${PATH}
 export PATH=${HOME}/bin:${PATH}
-export PATH=${HOME}/opt/py36/bin:${PATH}
+export PATH=${HOME}/opt/py39/bin:${PATH}
+#export PATH=${HOME}/opt/py36/bin:${PATH}
 export PATH=${HOME}/opt/py27/bin:${PATH}
-
-#-----------------------------------------------------------------
-# 非端末プロセスなら終了
-#-----------------------------------------------------------------
-# スクリプトとして起動された場合、ここでプロセスが終了する。
-[ $#PROMPT -eq 0 -o $#TERM -eq 0 ] && return
-
-#-----------------------------------------------------------------
-# オプション
-#-----------------------------------------------------------------
-# 無駄なスクロールを避ける
-setopt always_last_prompt
-# 履歴ファイルに追加
-setopt append_history
-# 自動的に候補一覧を表示
-setopt auto_list
-# 自動的に補完候補を表示する
-unsetopt auto_menu
-# "~$var" でディレクトリにアクセス
-#setopt	auto_name_dirs
-# 変数名に対して無駄なスペースの削除やカッコの補完をする
-setopt auto_param_keys
-# cdのタイミングで自動的にpushd
-setopt auto_pushd
-# 無駄な末尾の / を削除する
-unsetopt auto_remove_slash
-# ディレクトリにマッチした場合/を付加
-setopt mark_dirs
-# csh スタイルのヒストリ置換
-setopt bang_hist
-# {a-za-z} をブレース展開
-setopt brace_ccl
-# 先頭に "~" を付けたもので展開
-setopt cdable_vars
-# 語の途中でもカーソル位置で補完
-setopt complete_in_word
-# 補完動作の解釈前にエイリアス展開
-setopt complete_aliases
-# タイプミスの修正
-setopt correct
-# = で初まる物をコマンドとして展開する 例：ls =ps  デフォルトで有効
-# setopt equals
-# "#", "~", "^" を正規表現として扱う
-setopt extended_glob
-# 履歴ファイルに開始/終了タイムスタンプを書き込み
-setopt extended_history
-# "*" にドットファイルをマッチ
-# setopt glob_dots
-# ">" を ">!" としてヒストリ保存
-setopt hist_allow_clobber
-# 以前のコマンドと全く同じ時以前の履歴から削除して新たに追加する
-setopt hist_ignore_all_dups
-# 直前の履歴と全く同じとき履歴に追加しない
-setopt hist_ignore_dups
-# 先頭がスペースで始まるときスペースを無視
-setopt hist_ignore_space
-# 余分なスペースを削除して履歴に保存
-setopt hist_reduce_blanks
-# 履歴を直接実行せず編集状態にする
-# setopt hist_verify
-# ctr-d で終了しない
-setopt ignore_eof
-# コマンド確定後すぐに履歴ファイルに保存する(設定しないと exit 時保存になる)
-setopt inc_append_history
-# 補完候補をコンパクトにする
-setopt list_packed
-# ファイル種別を表す記号を末尾に表示
-setopt list_types
-# "val=expr" のような = 以降でファイル名展開
-setopt magic_equal_subst
-# 一覧表示せずに、すぐに最初の候補を補完
-#setopt	menu_complete
-# 複数のリダイレクトやパイプに対応
-setopt multios
-# ファイル名を数値的にソート
-setopt numeric_glob_sort
-# リダイレクトで上書き禁止
-setopt no_clobber
-# ベルを鳴らさない
-setopt no_beep
-# シェル終了時にジョブをチェックしない
-#setopt no_check_jobs
-# C-s/C-q によるフロー制御をしない
-setopt no_flow_control
-# 走行中のジョブにシグナルを送らない
-setopt no_hup
-# 補完の時にベルを鳴らさない
-setopt no_list_beep
-# ジョブの状態をただちに知らせる
-setopt notify
-# 補完候補の最初を自動補完しない
-unsetopt menu_complete
-# プロンプト内で変数展開
-setopt prompt_subst
-# 8ビットクリーン表示
-setopt print_eight_bit
-# 重複するディレクトリを無視
-setopt pushd_ignore_dups
-# "rm * " を実行する前に確認しない
-# setopt rm_star_silent
-# 複数端末間で履歴ファイルを共有する(tmuxなど利用する場合は必須)
-setopt share_history
-# 行末の "` (バッククウォート)" を無視
-setopt sun_keyboard_hack
-# 変数内の文字列分解のデリミタ
-setopt sh_word_split
-# コマンド実行後は右プロンプトを消す
-setopt transient_rprompt
-
-#-----------------------------------------------------------------
-# プロンプト設定
-#-----------------------------------------------------------------
-# tmux を利用している時にプロンプトに window 番号を設定
-if [ "$TMUX" != "" ] ; then
-    # export WINDOW=`tmux display -pt $TMUX_PANE '#S:#I.#P'`
-    export WINDOW=`tmux display -pt $TMUX_PANE '#I.#P'`
-fi
-
-# カラー記述を簡略化
-# 数字や文字で色を指定できるようにする
-# 0:black
-# 1:red
-# 2:green
-# 3:yellow
-# 4:blue
-# 5:magenta
-# 6:cyan
-# 7:white
-# それ以外：black
-# %f:reset_color
-#autoload -Uz colors; colors
-# 左プロンプト
-PROMPT="%F{green}%n@%m%F{magenta}${WINDOW:+[$WINDOW]}%F{white}%#%f "
-
-# 右プロンプト
-# バージョン管理システム関連の情報を表示(zsh >=4.3.6)
-autoload -Uz is-at-least
-if is-at-least 4.3.6; then
-    autoload -Uz vcs_info
-    zstyle ':vcs_info:*' enable bzr git svn hg
-    if [[ "$TERM" == dumb ]] ; then
-        # emacs 等から接続すると dumb 端末と認識され、そうした端末では色を出さないようにする
-        zstyle ':vcs_info:*' actionformats "(%s%)-[%b|%a] " "zsh: %r"
-        zstyle ':vcs_info:*' formats "(%s%)-[%b] " "zsh: %r"
-    else
-        # 色をつける
-        zstyle ':vcs_info:*' actionformats '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{yellow}|%F{red}%a%F{magenta}]%f '
-        zstyle ':vcs_info:*' formats '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{magenta}]%f '
-        zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{red}:%F{yellow}%r'
-        zstyle ':vcs_info:bzr:*' use-simple true
-        if is-at-least 4.3.10; then
-            zstyle ':vcs_info:*' check-for-changes true
-            zstyle ':vcs_info:*' stagedstr "+"
-            zstyle ':vcs_info:*' unstagedstr "-"
-        fi
-    fi
-fi
-
-function precmd() {
-    local color
-    if [[ ${PWD}/ == /Volumes/* ]]; then
-        color=%F{yellow}%f
-    else
-        color=%F{white}%f
-    fi
-
-    psvar=()
-    vcs_info
-
-    if [ "$EMACS" ];then
-        # Emacs の ansi-term では右プロンプトを表示しない
-        RPROMPT=""
-    else
-        # setopt prompt_subst を設定するとプロンプトに変数そのまま記述できる
-        # %39<...<%- は 39文字以上になったら前方を ... に置換する設定
-        #RPROMPT='[%F{green}%39<...<%~%f] ${vcs_info_msg_0_}%f'
-        if [[ ${PWD}/ == /Volumes/* ]]; then
-            # Volumes 以下にいる場合
-            RPROMPT='[%F{yellow}%K{red}%39<...<%~%k%f] ${vcs_info_msg_0_}'
-        else
-            # Volumes 以下にいない場合
-            RPROMPT='[%F{white}%39<...<%~%f] ${vcs_info_msg_0_}'
-        fi
-    fi
-
-}
 
 # -----------------------------------------------------------------
 # 色設定

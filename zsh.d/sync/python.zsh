@@ -2,6 +2,24 @@
 
 # python関連
 
+# pyenv
+export PYENV_ROOT=${HOME}/opt/pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+
+# Python
+export PYTHONSTARTUP="${HOME}/.pythonrc.py"
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+source ${HOME}/opt/py3.11/bin/activate
+#export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
+#export WORKON_HOME=${HOME}/.virtualenvs
+#source ${HOME}/local/bin/virtualenvwrapper.sh
+export PIP_RESPECT_VIRTUALENV=true
+if [ -d ${HOME}/python/OpenCV-2.4.2/build/lib ]; then
+    export PYTHONPATH=$PYTHONPATH:${HOME}/local/OpenCV-2.4.2/lib
+fi
+
+# 関数
 function pjson {
     if [ $# -gt 0 ];
     then
