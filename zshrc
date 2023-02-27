@@ -418,53 +418,6 @@ zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':completion:*' recent-dirs-insert both
 
 #-----------------------------------------------------------------
-# 関数定義
-#-----------------------------------------------------------------
-
-# Emacs 用
-
-# @see http://masutaka.net/chalow/2011-09-28-1.html
-# ディレクトリを Emacs の dired で開く
-function dired () {
-    emacsclient -e "(dired \"${1:a}\")"
-}
-
-# emacs 側に設定が必要です init_elscreen に関数を定義してあります
-function cde () {
-    EMACS_CWD=`emacsclient -e "
-    (if (featurep 'elscreen)
-    (elscreen-current-directory)
-    (non-elscreen-current-directory))" | sed 's/^"\(.*\)"$/\1/'`
-
-    echo "chdir to $EMACS_CWD"
-    cd "$EMACS_CWD"
-}
-
-# python
-function pjson {
-    if [ $# -gt 0 ];
-    then
-        for arg in $@
-        do
-            if [ -f $arg ];
-            then
-                less $arg | python -m json.tool
-            else
-                echo "$arg" | python -m json.tool
-            fi
-        done
-    fi
-}
-
-# Erlang
-function ercrun {
-    if [ $# -gt 0 ];
-    then
-        erl -noshell -s $@ -s init stop
-    fi
-}
-
-#-----------------------------------------------------------------
 # ローカル設定の読み込み
 #-----------------------------------------------------------------
 [ -f ${ZSHD}/zshrc.local ] && source ${ZSHD}/zshrc.local
