@@ -19,4 +19,10 @@ function cde () {
     cd "$EMACS_CWD"
 }
 
+# EDITOR
+export EDITOR="/usr/local/bin/emacsclient"
+
+# PATH
+export PATH=${HOME}/.emacs.d/bin:${PATH}
+
 # end

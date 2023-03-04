@@ -19,6 +19,11 @@ if [ -d ${HOME}/python/OpenCV-2.4.2/build/lib ]; then
     export PYTHONPATH=$PYTHONPATH:${HOME}/local/OpenCV-2.4.2/lib
 fi
 
+# PATH
+export PATH=${HOME}/opt/py2.7/bin:${PATH}
+#export PATH=${HOME}/opt/py3.6/bin:${PATH}
+export PATH=${HOME}/opt/py3.11/bin:${PATH}
+
 # 関数
 function pjson {
     if [ $# -gt 0 ];

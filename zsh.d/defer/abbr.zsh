@@ -30,7 +30,7 @@ abbr brewout="brew update; brew outdated"
 abbr brewin="brew upgrade"
 
 # グローバルエイリアス
-#abbr -g V="| /usr/share/vim/vim90/macros/less.sh"
+abbr -g V="| /usr/share/vim/vim90/macros/less.sh"
 
 # 自分に依存した設定
 abbr sakuradiary="~/Sites/sakitojp/bin/scp_diary.sh"
