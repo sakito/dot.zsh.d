@@ -1,18 +1,5 @@
 # -*- mode:sh -*-
 
-#screen-UxR
-#if [ $TERM = "screen" ]; then
-#    precmd () {
-#        screen -xR title $(basename $(print -P "%~"))
-#    }
-#    preexec () {
-#        screen -xR eval "title '$1'"
-#    }
-#fi
-#if [ $TERM != screen ]; then
-#   exit
-#fi
-
 # Attache tmux
 if ( ! test $TMUX ) && ( ! expr $TERM : "^screen" > /dev/null ) && which tmux > /dev/null; then
     if ( tmux has-session ); then
@@ -29,3 +16,5 @@ if ( ! test $TMUX ) && ( ! expr $TERM : "^screen" > /dev/null ) && which tmux > 
         tmux new-session -n $(hostname -s)
     fi
 fi
+
+# end
