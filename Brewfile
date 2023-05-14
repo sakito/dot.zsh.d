@@ -76,4 +76,3 @@ brew "zsh"
 brew "zsh-completions"
 
 cask "adoptopenjdk"
-cask "meld"
