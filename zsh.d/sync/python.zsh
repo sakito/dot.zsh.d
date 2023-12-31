@@ -8,9 +8,11 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 # Python
+py3_version=py3.12.1
+
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-source ${HOME}/opt/py3.12.1/bin/activate
+source ${HOME}/opt/${py3_version}/bin/activate
 #export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
 #export WORKON_HOME=${HOME}/.virtualenvs
 #source ${HOME}/local/bin/virtualenvwrapper.sh
@@ -21,8 +23,7 @@ fi
 
 # PATH
 export PATH=${HOME}/opt/py2.7/bin:${PATH}
-#export PATH=${HOME}/opt/py3.6/bin:${PATH}
-export PATH=${HOME}/opt/py3.12.1/bin:${PATH}
+export PATH=${HOME}/opt/${py3_version}/bin:${PATH}
 
 # 関数
 function pjson {
