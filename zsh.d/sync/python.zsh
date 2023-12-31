@@ -10,7 +10,7 @@ eval "$(pyenv init -)"
 # Python
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-source ${HOME}/opt/py3.11/bin/activate
+source ${HOME}/opt/py3.12.1/bin/activate
 #export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
 #export WORKON_HOME=${HOME}/.virtualenvs
 #source ${HOME}/local/bin/virtualenvwrapper.sh
