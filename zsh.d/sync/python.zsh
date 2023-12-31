@@ -22,7 +22,7 @@ fi
 # PATH
 export PATH=${HOME}/opt/py2.7/bin:${PATH}
 #export PATH=${HOME}/opt/py3.6/bin:${PATH}
-export PATH=${HOME}/opt/py3.11/bin:${PATH}
+export PATH=${HOME}/opt/py3.12.1/bin:${PATH}
 
 # 関数
 function pjson {
