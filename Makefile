@@ -19,6 +19,8 @@ dotfiles:
 	ln -sf ${CWD}/dotfiles/pip ${HOME}/.pip
 	ln -sf ${CWD}/dotfiles/pythonrc.py ${HOME}/.pythonrc.py
 	ln -sf ${CWD}/dotfiles/tmux.conf ${HOME}/.tmux.conf
+	mkdir -p "${HOME}/Library/Application Support/ruff"
+	ln -sf ${CWD}/dotfiles/dot.ruff.toml "${HOME}/Library/Application Support/ruff/ruff.toml"
 
 .PHONY: brewinstall
 brewinstall:
