@@ -21,7 +21,8 @@ dotfiles:
 	ln -sf ${CWD}/dotfiles/tmux.conf ${HOME}/.tmux.conf
 	mkdir -p "${HOME}/Library/Application Support/ruff"
 	ln -sf ${CWD}/dotfiles/dot.ruff.toml "${HOME}/Library/Application Support/ruff/ruff.toml"
-	ln -sf ${CWD}/dotfiles/dot.prettierrc ${HOME}/.prettierrc
+	ln -sf ${CWD}/dotfiles/dot.editorconfig ${HOME}/.editorconfig
+	ln -sf ${CWD}/dotfiles/dot.prettierrc.json ${HOME}/.prettierrc
 
 .PHONY: brewinstall
 brewinstall:
