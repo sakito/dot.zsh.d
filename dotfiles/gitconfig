@@ -23,3 +23,5 @@
 
 # global な gitignore は $HOME/.config/git/ignore に配置
 
+[ghq]
+    root = ~/src
