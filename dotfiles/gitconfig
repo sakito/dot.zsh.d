@@ -5,12 +5,8 @@
     ui = true
 [core]
     quotepath = false
-[difftool "sourcetree"]
-    cmd = /usr/local/bin/meld $LOCAL $REMOTE
-    path = 
-[mergetool "sourcetree"]
-    cmd = /usr/local/bin/meld $LOCAL $BASE $REMOTE --auto-merge --output=$MERGED
-    trustExitCode = true
+[init]
+    defaultBranch = main
 [merge]
     ff = false
 [pull]
