@@ -21,6 +21,7 @@ abbr zzz='osascript -e "tell application \"Finder\" to sleep"'
 
 # git
 abbr g='git'
+abbr gcd='cd $(ghq list -p | fzf)'
 
 # python
 abbr lab="\jupyter-lab"

@@ -16,6 +16,8 @@
     co = checkout
     ci = commit
     b = branch --no-merged
+    get = !ghq get -p
+    list = !ghq list
 
 # global な gitignore は $HOME/.config/git/ignore に配置
 
