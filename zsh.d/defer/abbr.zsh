@@ -17,7 +17,7 @@ abbr j=jobs
 abbr reload="source ~/.zshrc"
 
 # sleep
-abbr zzz='osascript -e "tell application \"Finder\" to sleep"'
+#abbr zzz='osascript -e "tell application \"Finder\" to sleep"'
 
 # git
 abbr g='git'
@@ -27,9 +27,9 @@ abbr gcd='cd $(ghq list -p | fzf)'
 abbr lab="\jupyter-lab"
 
 # pip
-abbr pipout="pip3 list --outdated"
-abbr pipup="pip3 list --outdated --format=columns |awk '{if(NR>2)print \$1}' |xargs pip3 install"
-abbr pipin="pip3 install -U"
+abbr pipout="uv pip list --outdated"
+abbr pipup="uv pip list --outdated --format=columns |awk '{if(NR>2)print \$1}' |xargs pip3 install"
+abbr pipin="uv pip install -U"
 
 # brew
 abbr brewout="brew update; brew outdated; brew outdated --cask;"
