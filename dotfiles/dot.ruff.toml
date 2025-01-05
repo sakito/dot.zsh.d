@@ -1,6 +1,6 @@
 # 全体で反映したい場合は以下に配置
 # Linux $XDG_CONFIG_HOME or $HOME/.config/ruff
-# Mac $HOME/Library/Application Support/ruff
+# Mac $HOME/.config/ruff
 # Win C:\Users\<ユーザ名>\AppData\Roaming/ruff
 
 # Exclude a variety of commonly ignored directories.
@@ -41,7 +41,13 @@ indent-width = 4
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
-select = ["E4", "E7", "E9", "F"]
+select = [
+  "E4",
+  "E7",
+  "E9",
+  "F", # pyflakes
+  "I", # isort
+]
 ignore = []
 
 

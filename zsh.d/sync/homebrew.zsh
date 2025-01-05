@@ -7,7 +7,7 @@ export PATH=/opt/homebrew/opt/texinfo/bin:${PATH}
 export PATH=/opt/homebrew/opt/openssl/bin:${PATH}
 export PATH=/opt/homebrew/opt/libiconv/bin:${PATH}
 
-export LDFLAGS=-L/opt/homebrew/opt/readline/lib:/opt/homebrew/opt/openssl/lib:${LDFLAGS}:/opt/homebrew/opt/libxml2/lib:/opt/homebrew/opt/libiconv/lib
+export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl/lib ${LDFLAGS} -L/opt/homebrew/opt/libxml2/lib -L/opt/homebrew/opt/libiconv/lib"
 export CPPFLAGS=-I/opt/homebrew/opt/readline/include:/opt/homebrew/opt/oepnssl/include:${CPPFLAGS}:/opt/homebrew/opt/libxml2/include:/opt/homebrew/opt/libiconv/include
 
 export PKG_CONFIG_PATH="/opt/homebrew/opt/libxml2/lib/pkgconfig:/opt/homebrew/opt/openssl/lib/pkgconfig"
