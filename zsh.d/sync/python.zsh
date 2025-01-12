@@ -3,7 +3,8 @@
 # python関連
 
 # Python
-py3_version=py3.12.8
+version=3.12.8
+py3_version=py${version}
 
 # setting
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
@@ -11,8 +12,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # uv
 export PYENV_ROOT=${HOME}/opt/py
-source ${PYENV_ROOT}/py3.12.8/bin/activate
-
+source ${PYENV_ROOT}/${py3_version}/bin/activate
+export DYLD_FALLBACK_LIBRARY_PATH=~/.local/share/uv/python/cpython-${version}-macos-aarch64-none/lib
 
 #export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages
 #export WORKON_HOME=${HOME}/.virtualenvs
