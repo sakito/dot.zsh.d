@@ -11,6 +11,7 @@ fignore=(.o .dvi .aux .toc - \~)
 #fpath=(${HOME}/.emacs.d/rc.d/zsh.d/completions/src $fpath)
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/etc/bash_completion.d $fpath)
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 # 補完の利用設定
 #autoload -Uz compinit; compinit
 
