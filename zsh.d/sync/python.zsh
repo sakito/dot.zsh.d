@@ -3,7 +3,7 @@
 # python関連
 
 # Python
-version=3.12.8
+version=3.13.4
 py3_version=py${version}
 
 # setting
@@ -11,7 +11,7 @@ export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # uv
-export PATH=${HOME}/opt/uv/bin:$PATH
+source $HOME/.local/bin/env
 export PYENV_ROOT=${HOME}/opt/py
 source ${PYENV_ROOT}/${py3_version}/bin/activate
 export DYLD_FALLBACK_LIBRARY_PATH=~/.local/share/uv/python/cpython-${version}-macos-aarch64-none/lib
@@ -25,7 +25,7 @@ if [ -d ${HOME}/python/OpenCV-2.4.2/build/lib ]; then
 fi
 
 # PATH
-export PATH=${HOME}/opt/py2.7/bin:${PATH}
+#export PATH=${HOME}/opt/py/py2.7/bin:${PATH}
 export PATH=${HOME}/opt/py/${py3_version}/bin:${PATH}
 
 # 関数
