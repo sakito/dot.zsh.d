@@ -1,4 +1,5 @@
 #!/bin/env zsh
+# echo $ABBR_USER_ABBREVIATIONS_FILE
 
 # エイリアス設定
 abbr ls='ls -vFG'
@@ -34,6 +35,9 @@ abbr pipin="uv pip install -U"
 # brew
 abbr brewout="brew update; brew outdated; brew outdated --cask;"
 abbr brewup="brew upgrade"
+
+# nvim
+abbr -f vi="nvim"
 
 # グローバルエイリアス
 abbr -g V="| /usr/share/vim/vim90/macros/less.sh"
