@@ -1,0 +1,35 @@
+shell-integration = zsh
+theme = catppuccin-mocha
+
+font-family = UDEV Gothic JPDOC
+
+window-padding-x = 20
+window-padding-y = 5
+window-padding-balance = true
+
+font-size = 18
+window-inherit-font-size = true
+
+font-thicken = true
+
+grapheme-width-method = "unicode"
+
+window-height = 50
+window-width = 180
+background-opacity = 0.85
+
+selection-invert-fg-bg = true
+
+cursor-style = "bar"
+
+scrollback-limit = 100000
+
+keybind = ctrl+j=ignore
+keybind = ctrl+p=unbind
+keybind = ctrl+n=unbind
+
+macos-titlebar-style = transparent
+macos-icon = custom-style
+macos-icon-ghost-color = 00008B
+macos-icon-screen-color = BCEE68
+

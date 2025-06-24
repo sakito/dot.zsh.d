@@ -7,6 +7,7 @@ all:
 	@echo HOME = ${HOME}
 	@echo CWD = ${CWD}
 
+
 .PHONY: dotfiles
 dotfiles:
 	#ln -sf ${CWD}/zsh.d ${HOME}/.zsh.d
@@ -23,6 +24,10 @@ dotfiles:
 	ln -sf ${CWD}/dotfiles/dot.ruff.toml "${HOME}/.config/ruff/ruff.toml"
 	ln -sf ${CWD}/dotfiles/dot.editorconfig ${HOME}/.editorconfig
 	ln -sf ${CWD}/dotfiles/dot.prettierrc.json ${HOME}/.prettierrc
+	ln -sf ${CWD}/dotfiles/ghostty ${HOME}/.config/ghostty
+
+
+
 
 .PHONY: brewinstall
 brewinstall:
