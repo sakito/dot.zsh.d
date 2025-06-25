@@ -38,6 +38,8 @@ abbr brewup="brew upgrade"
 
 # nvim
 abbr -f vi="nvim"
+abbr nv="nvim"
+abbr -f view="nvim -R"
 
 # グローバルエイリアス
 abbr -g V="| /usr/share/vim/vim90/macros/less.sh"
