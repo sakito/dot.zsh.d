@@ -55,6 +55,9 @@ export DISPLAY="localhost"
 # 一時ファイル
 export TMP="${HOME}/tmp"
 
+# XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="$HOME/.config"
+
 #-----------------------------------------------------------------
 # plugin
 #-----------------------------------------------------------------

@@ -20,7 +20,8 @@ function cde () {
 }
 
 # EDITOR
-export EDITOR="/usr/local/bin/emacsclient"
+#export EDITOR="/usr/local/bin/emacsclient"
+export EDITOR="/opt/homebrew/bin/nvim"
 
 # PATH
 export PATH=${HOME}/.emacs.d/bin:${PATH}
