@@ -5,12 +5,19 @@
     ui = true
 [core]
     quotepath = false
+    pager = delta
 [init]
     defaultBranch = main
 [merge]
     ff = false
+    conflictstyle = zdiff3
+[interactive]
+  diffFilter = delta --color-only
 [pull]
     ff = only
+[delta]
+  navigate = true
+  dark = true
 [alias]
     st = status -s
     co = checkout
