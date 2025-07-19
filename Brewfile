@@ -75,4 +75,10 @@ brew "wget"
 brew "zsh"
 brew "zsh-completions"
 
+brew "cmigemo"
+brew "fd"
+brew "yazi"
+brew "lazygit"
+
 cask "adoptopenjdk"
+
