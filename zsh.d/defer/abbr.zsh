@@ -2,9 +2,11 @@
 # echo $ABBR_USER_ABBREVIATIONS_FILE
 
 # エイリアス設定
-abbr ls='ls -vFG'
-abbr ll='ls -ltrh'
-abbr la='ls -a'
+
+# ls に ezaを利用
+abbr -f ls='eza -xG --group-directories-first'
+abbr -f ll='eza -xl --group-directories-first'
+abbr -f la='eza -xa --group-directories-first'
 
 abbr h='history 20'
 
