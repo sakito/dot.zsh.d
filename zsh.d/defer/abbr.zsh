@@ -47,5 +47,5 @@ abbr -f view="nvim -R"
 abbr -g V="| /usr/share/vim/vim90/macros/less.sh"
 
 # 自分に依存した設定
-abbr sakuradiary="~/Sites/sakitojp/bin/scp_diary.sh"
+abbr diarysync="~/Sites/sakitojp.v2/bin/sync_diary.sh"
 
